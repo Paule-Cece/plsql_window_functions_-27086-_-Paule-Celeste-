@@ -1,5 +1,10 @@
 # plsql_window_functions_-27086-_-Paule-Celeste-
 
+Instructor: Eric MANIRAGUHA
+Assignment Date: September 19, 2025
+Group: A
+Student: Paule Celeste MIMBA ESSONE (ID: 27086)
+
      Business Problem Definition
 
 Company: E-Commerce Retailer ("QuickCart")
@@ -70,6 +75,7 @@ SELECT c.customer_name, t.transaction_date, t.total_amount
 FROM customers c
 INNER JOIN transactions t ON c.customer_id = t.customer_id
 WHERE t.transaction_date >= '2024-01-01';
+
 **Interpretation:**
 Identifies all active customers who made purchases in 2024. Helps measure current customer engagement vs. dormant accounts.
 
@@ -79,6 +85,7 @@ SELECT c.customer_name, c.signup_date
 FROM customers c
 LEFT JOIN transactions t ON c.customer_id = t.customer_id
 WHERE t.transaction_id IS NULL;
+
 **Interpretation:**
 Finds registered customers who haven't made any purchases. Enables targeted reactivation campaigns.
 
@@ -88,6 +95,7 @@ SELECT p.product_name, p.category
 FROM transactions t
 RIGHT JOIN products p ON t.product_id = p.product_id
 WHERE t.transaction_id IS NULL;
+
 **Interpretation:**
 Identifies products that have never been sold. Signals potential inventory issues or marketing gaps.
 
@@ -100,6 +108,7 @@ SELECT
 FROM customers c
 FULL OUTER JOIN transactions t ON c.customer_id = t.customer_id
 FULL OUTER JOIN products p ON t.product_id = p.product_id;
+
 **Interpretation:** 
 Complete view of customer-product relationships, including orphaned records. Reveals data quality issues.
 
@@ -112,6 +121,7 @@ SELECT
 FROM customers c1
 INNER JOIN customers c2 ON c1.region = c2.region
 WHERE c1.customer_id < c2.customer_id;
+
 **Interpretation:** 
 Identifies customer pairs in the same region. Enables regional community building or referral programs.
 
@@ -133,6 +143,7 @@ WITH regional_sales AS (
 SELECT region, product_name, revenue
 FROM regional_sales
 WHERE rank <= 3;
+
 **Interpretation:** 
 Shows regional product preferences. Helps optimize regional inventory allocation.
 
@@ -152,6 +163,7 @@ SELECT
 FROM transactions
 GROUP BY DATE_TRUNC('month', transaction_date)
 ORDER BY month;
+
 **Interpretation:**
 Reveals sales trends and seasonality. Moving averages smooth out volatility for better forecasting.
 
@@ -175,6 +187,7 @@ SELECT
     ) AS growth_pct
 FROM monthly
 ORDER BY month;
+
 **Interpretation:**
 Quantifies monthly performance changes. Negative growth triggers investigation into marketing or external factors.
 
@@ -193,6 +206,7 @@ FROM (
     JOIN transactions t ON c.customer_id = t.customer_id
     GROUP BY c.customer_name
 ) customer_totals;
+
 **Interpretation:**
 Segments customers into value tiers (Platinum, Gold, Silver, Bronze). Enables differentiated service and marketing strategies.
 
